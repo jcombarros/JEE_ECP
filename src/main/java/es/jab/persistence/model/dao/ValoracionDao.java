@@ -1,5 +1,7 @@
 package es.jab.persistence.model.dao;
 
-public class ValoracionDao {
+import es.jab.persistence.model.entities.Valoracion;
+
+public interface ValoracionDao extends GenericDao<Valoracion, Integer> {
 
 }
