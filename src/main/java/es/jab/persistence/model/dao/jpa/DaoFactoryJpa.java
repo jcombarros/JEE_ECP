@@ -24,16 +24,14 @@ public class DaoFactoryJpa extends DaoFactory {
         return entityManagerFactory;
     }
 
-	@Override
-	public TemaDao getTemaDao() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ValoracionDao getValoracionDao() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public TemaDao getTemaDao() {
+        return new TemaDaoJpa();
+    }
+    
+    @Override
+    public ValoracionDao getValoracionDao() {
+        return new ValoracionDaoJpa();
+    }
 
 }
