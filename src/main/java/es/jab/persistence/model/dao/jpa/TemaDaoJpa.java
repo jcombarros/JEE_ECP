@@ -1,7 +1,5 @@
 package es.jab.persistence.model.dao.jpa;
 
-import java.util.List;
-
 import es.jab.persistence.model.dao.TemaDao;
 import es.jab.persistence.model.entities.Tema;
 

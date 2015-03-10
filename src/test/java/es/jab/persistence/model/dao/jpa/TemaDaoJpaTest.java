@@ -20,7 +20,8 @@ public class TemaDaoJpaTest {
 	
 	@BeforeClass
     public static void beforeClass() {
-		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+		DaoFactoryJpa.setDaoFactory(new DaoFactoryJpa());
+		DaoFactoryJpa.dropAndCreateTables();
 	}
 	
 	@Before
@@ -32,6 +33,7 @@ public class TemaDaoJpaTest {
 	
 	@Test
     public void testRead() {
+		Tema t = temaDao.read(tema.getId());
         assertEquals(tema, temaDao.read(tema.getId()));
     }
 	
@@ -39,6 +41,7 @@ public class TemaDaoJpaTest {
     public void testUpdate() {
         tema.setNombre("Pregunta 1.1");
         tema.setPregunta("¿Pregunta 1.1?");
+        temaDao.update(tema);
         assertEquals(tema, temaDao.read(tema.getId()));
     }
 	
@@ -58,7 +61,7 @@ public class TemaDaoJpaTest {
 	
 	@After
 	public void after() {
-
+		DaoFactoryJpa.dropAndCreateTables();
 	}
 
 }
