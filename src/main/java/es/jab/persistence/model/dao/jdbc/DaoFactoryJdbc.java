@@ -7,13 +7,16 @@ import java.sql.Statement;
 
 import org.apache.logging.log4j.LogManager;
 
+import es.jab.persistence.model.dao.DaoFactory;
+import es.jab.persistence.model.dao.TemaDao;
+import es.jab.persistence.model.dao.ValoracionDao;
 import es.jab.persistence.model.entities.Tema;
 
-public class DaoFactoryJdbc {
+public class DaoFactoryJdbc extends DaoFactory {
 	
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
-    private static final String URL = "jdbc:mysql://localhost:3306/jee";
+    private static final String URL = "jdbc:mysql://localhost:3306/miwjee";
 
     private static final String USER = "root";
 
@@ -48,5 +51,15 @@ public class DaoFactoryJdbc {
             LogManager.getLogger(DaoFactoryJdbc.class).error("Drop tables: " + e.getMessage());
         }
     }
+    
+    @Override
+    public TemaDao getTemaDao() {
+        return new TemaDaoJdbc();
+    }
+
+	@Override
+	public ValoracionDao getValoracionDao() {
+		return null;
+	}
 
 }

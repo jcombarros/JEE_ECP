@@ -7,7 +7,10 @@ import java.sql.Statement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GenericDaoJdbc {
+import es.jab.persistence.model.dao.GenericDao;
+
+
+public abstract class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
 	
 	protected static final String SQL_SELECT_ID = "SELECT * FROM %s WHERE ID=%d";
 
