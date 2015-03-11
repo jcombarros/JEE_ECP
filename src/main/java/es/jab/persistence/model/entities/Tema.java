@@ -7,11 +7,21 @@ import javax.persistence.Id;
 @Entity
 public class Tema {
 	
+	public static final String TABLE = "tema";
+
+	public static final String ID = "ID";
+	
 	@Id
 	@ GeneratedValue
 	private int id;
 	
+	
+	public static final String NOMBRE = "NOMBRE";
+	
 	private String nombre;
+	
+	
+	public static final String PREGUNTA = "PREGUNTA";
 	
 	private String pregunta;
 	
