@@ -66,5 +66,12 @@ public class Valoracion {
 		assert respuesta>= 0 && respuesta <= 10;
 		this.respuesta = respuesta;
 	}
+	
+	@Override
+	public boolean equals(Object temaObj){
+		Valoracion valoracion = (Valoracion)temaObj;
+		return this.getId() == valoracion.getId() && this.getTema().equals(valoracion.getTema()) 
+				&& this.getNivelEstudios().equals(valoracion.getNivelEstudios()) && this.getRespuesta() == valoracion.getRespuesta();
+	}
 
 }
