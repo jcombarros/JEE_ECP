@@ -41,7 +41,8 @@ public class ValoracionDaoJpaTest {
 	
 	@Test
     public void testUpdate() {
-		valoracion.setTema(new Tema("Pregunta 2", "¿Pregunta 2?"));
+		valoracion.getTema().setNombre("Pregunta 2");
+		valoracion.getTema().setPregunta("¿Pregunta 2?");
 		valoracion.setRespuesta(4);
 		valoracion.setNivelEstudios(NivelEstudios.PRIMARIA);
         valoracionDao.update(valoracion);
