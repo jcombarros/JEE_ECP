@@ -61,7 +61,7 @@ public class Tema {
 	@Override
 	public boolean equals(Object temaObj){
 		Tema tema = (Tema)temaObj;
-		return this.getId() == tema.getId() && this.getNombre() == tema.getNombre() && this.getPregunta() == tema.getPregunta();
+		return this.getId() == tema.getId() && this.getNombre().equals(tema.getNombre()) && this.getPregunta().equals(tema.getPregunta());
 	}
 
 }

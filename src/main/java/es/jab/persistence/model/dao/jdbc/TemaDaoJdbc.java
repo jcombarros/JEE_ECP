@@ -16,7 +16,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
     private Logger log = LogManager.getLogger(TemaDaoJdbc.class);
 	
 	private static final String SQL_CREATE_TABLE = "CREATE TABLE %s (%s INT NOT NULL AUTO_INCREMENT, %s VARCHAR(255), "
-            + "%s VARCHAR(255) PRIMARY KEY (%s))";
+            + "%s VARCHAR(255), PRIMARY KEY (%s))";
 	
 	public static String sqlToCreateTable() {
         return String
@@ -38,7 +38,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
         return this.create(resultSet);
     }
 
-	private static final String SQL_UPDATE = "UPDATE %s SET %s='%s', %s='%s', %s='%s', %s='%s', %s=%d WHERE ID=%d";
+	private static final String SQL_UPDATE = "UPDATE %s SET %s='%s', %s='%s' WHERE ID=%d";
 
     @Override
     public void update(Tema tema) {

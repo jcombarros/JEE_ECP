@@ -1,4 +1,4 @@
-package es.jab.persistence.model.dao.jpa;
+package es.jab.persistence.model.dao.jdbc;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -10,18 +10,19 @@ import org.junit.Test;
 
 import es.jab.persistence.model.dao.DaoFactory;
 import es.jab.persistence.model.dao.TemaDao;
+import es.jab.persistence.model.dao.jpa.DaoFactoryJpa;
 import es.jab.persistence.model.entities.Tema;
- 
-public class TemaDaoJpaTest {
+
+public class TemaDaoJdbcTest {
 	
-	private TemaDao temaDao;
+private TemaDao temaDao;
 	
 	private Tema tema;
 	
 	@BeforeClass
     public static void beforeClass() {
-		DaoFactoryJpa.setDaoFactory(new DaoFactoryJpa());
-		DaoFactoryJpa.dropAndCreateTables();
+		DaoFactory.setDaoFactory(new DaoFactoryJdbc());
+        DaoFactoryJdbc.dropAndCreateTables();
 	}
 	
 	@Before
@@ -60,7 +61,7 @@ public class TemaDaoJpaTest {
 	
 	@After
 	public void after() {
-		DaoFactoryJpa.dropAndCreateTables();
+		DaoFactoryJdbc.dropAndCreateTables();
 	}
 
 }
