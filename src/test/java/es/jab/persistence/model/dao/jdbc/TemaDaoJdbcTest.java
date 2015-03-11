@@ -49,7 +49,7 @@ private TemaDao temaDao;
     public void testDeleteByID() {
 		temaDao.deleteById(tema.getId());
         assertNull(temaDao.read(tema.getId()));
-    }
+    } 
 	
 	@Test
     public void testFindAll() {
