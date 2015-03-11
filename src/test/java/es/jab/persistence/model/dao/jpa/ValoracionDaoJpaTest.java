@@ -24,7 +24,7 @@ public class ValoracionDaoJpaTest {
 	
 	@Before
     public void before() {
-        this.valoracion = new Valoracion(new Tema("Pregunta 1", "¿Pregunta 1?"), NivelEstudios.UNIVERSITARIA);
+        this.valoracion = new Valoracion(new Tema("Pregunta 1", "¿Pregunta 1?"), NivelEstudios.UNIVERSITARIA, 8);
         valoracionDao = DaoFactory.getInstance().getValoracionDao();
         valoracionDao.create(valoracion);
     }

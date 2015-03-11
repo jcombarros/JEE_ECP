@@ -22,13 +22,16 @@ public class Valoracion {
 	
 	private NivelEstudios nivelEstudios;
 	
+	private int respuesta;
+	
 	public Valoracion (){
 		
 	}
 	
-	public Valoracion (Tema tema, NivelEstudios nivelEstudios){
+	public Valoracion (Tema tema, NivelEstudios nivelEstudios, int respuesta){
 		this.tema = tema;
 		this.setNivelEstudios(nivelEstudios);
+		this.setRespuesta(respuesta);
 	}
 
 	public int getId() {
@@ -53,6 +56,15 @@ public class Valoracion {
 
 	public void setNivelEstudios(NivelEstudios nivelEstudios) {
 		this.nivelEstudios = nivelEstudios;
+	}
+
+	public int getRespuesta() {
+		return respuesta;
+	}
+
+	public void setRespuesta(int respuesta) {
+		assert respuesta>= 0 && respuesta <= 10;
+		this.respuesta = respuesta;
 	}
 
 }
