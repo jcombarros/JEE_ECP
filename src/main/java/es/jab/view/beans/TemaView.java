@@ -2,12 +2,14 @@ package es.jab.view.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
+import es.jab.persistence.model.utils.NivelEstudios;
 
 public class TemaView implements Serializable{
 
@@ -19,7 +21,10 @@ public class TemaView implements Serializable{
 	
 	private Valoracion valoracion;
 	
+	private List<NivelEstudios> nivelesEstudios; 
+	
 	public TemaView(){
+		
 		
 	}
 	
@@ -58,7 +63,15 @@ public class TemaView implements Serializable{
 	public void setValoracion(Valoracion valoracion) {
 		this.valoracion = valoracion;
 	}
-	
+
+	public List<NivelEstudios> getNivelesEstudios() {
+		return nivelesEstudios;
+	}
+
+	public void setNivelesEstudios(List<NivelEstudios> nivelesEstudios) {
+		this.nivelesEstudios = nivelesEstudios;
+	}
+
 	public void update(){
 		LogManager.getLogger(TemaView.class).debug(
                 "Se accede a la capa de negocio para recuperar la lista de temas");
@@ -70,6 +83,7 @@ public class TemaView implements Serializable{
 		temasMock.add(new Tema("pregunta 4", "¿Cuando?"));
 		temasMock.add(new Tema("pregunta 5", "¿Dónde?"));
 		//FIN    Mock
+		this.nivelesEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
 		this.temas = temasMock;
 	}
 
