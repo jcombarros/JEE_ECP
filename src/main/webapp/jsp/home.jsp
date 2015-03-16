@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-Insert body here
+    <h1>Temas</h1>
+    <p>
+        <a href="/JEE_ECP/Valoraciones/temas">Lista de temas</a>
+    </p>
 </body>
 </html>

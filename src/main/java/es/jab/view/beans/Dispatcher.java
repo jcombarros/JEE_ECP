@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Dispatcher
  */
-@WebServlet("/jsp/*")
+@WebServlet("/Valoraciones/*")
 public class Dispatcher extends HttpServlet {
 	
 	private static String PATH_ROOT_VIEW = "/jsp/";
@@ -28,7 +28,7 @@ public class Dispatcher extends HttpServlet {
         String view;
         
         switch (action) {
-	        case "other":
+	        case "temas":
 	            view = action;
 	            break;
 	        default:
