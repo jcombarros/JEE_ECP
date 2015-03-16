@@ -29,6 +29,16 @@ public class Dispatcher extends HttpServlet {
         
         switch (action) {
 	        case "temas":
+	        	TemaView temaView = new TemaView();
+	        	
+	        	String temaString = request.getParameter("temaId");
+	        	if (temaString != null && !temaString.isEmpty()){
+		        	Integer temaId = Integer.valueOf(request.getParameter("temaId"));
+		        	if(temaId != null){
+		        		temaView.addTema(temaId);
+		        	}	        	
+	        	}
+	        	request.setAttribute(action, temaView);
 	            view = action;
 	            break;
 	        default:
