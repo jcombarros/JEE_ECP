@@ -14,6 +14,9 @@ import es.jab.persistence.model.utils.NivelEstudios;
 public class TemaView implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	
+	private String mensaje;
 
 	private List<Tema> temas;
 	
@@ -38,6 +41,14 @@ public class TemaView implements Serializable{
 		this.temas = temas;
 		this.tema = tema;
 		this.valoracion = valoracion;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
 	public List<Tema> getTemas() {
@@ -86,19 +97,24 @@ public class TemaView implements Serializable{
 		this.nivelesEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
 		this.temas = temasMock;
 	}
-
-	public void addTema(Integer temaId) {
+	
+	public Tema recuperarTemaPorId(int id){
 		LogManager.getLogger(TemaView.class).debug(
-                "Se accede a la capa de negocio para recuperar temaPorId");
+                "Se accede a la capa de negocio para recuperar Tema por id");
 		//INICIO Mock
 		Tema temaMock = new Tema("pregunta x", "¿Por qué?");
 		//FIN    Mock
-		if(temaMock != null){
-			Valoracion valoracion = new Valoracion();
-			valoracion.setTema(temaMock);
-			this.valoracion = valoracion;
-			this.tema = temaMock;
-		}
+		return temaMock;
+				
+	}
+
+	public String process() {
+		LogManager.getLogger(TemaView.class).debug(
+                "Se accede a la capa de negocio para guardar la nueva Valoracion");
+		//INICIO Mock
+		Valoracion valoracion = this.valoracion;
+		//FIN    Mock
+		return "home";
 	}
 
 }

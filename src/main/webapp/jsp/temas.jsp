@@ -15,6 +15,9 @@
     padding-left: 30px;
     display: inline-block;
 }
+.mensaje{
+    color: red;
+}
 </style>
 <title>Temas</title>
 </head>
@@ -23,6 +26,10 @@
         Lista de <b>Temas</b>
     </h1>
     <c:set var="temasView" scope="request" value="${temas}" />
+    <c:set var="mensaje" scope="request" value="${temasView.mensaje}" />
+    <c:if test="${mensaje != ''}"> 
+        <span class="mensaje">${mensaje}</span>
+    </c:if>
     <div>${temasView.update()}</div>
     <form action="/JEE_ECP/Valoraciones/temas" method="post">
         <p>Temas:</p>
@@ -56,7 +63,7 @@
                         <span class="campoForm">Nivel de Estudios:</span>
 	                        <select name="nivelEstudios">
 	                            <c:forEach  var="nivelEstudios" items="${nivelesEstudios}">
-	                                <option value="${nivelEstudios.id}">${nivelEstudios.descripcion}</option>
+	                                <option value="${nivelEstudios}">${nivelEstudios.descripcion}</option>
 	                            </c:forEach>
 	                        </select>
                         </c:if>
