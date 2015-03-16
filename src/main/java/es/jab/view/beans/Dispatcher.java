@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Dispatcher
  */
-@WebServlet("/Votaciones/*")
+@WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
 	
-	private static String PATH_ROOT_VIEW = "/votaciones/";
+	private static String PATH_ROOT_VIEW = "/jsp/";
 	
 	private static final long serialVersionUID = 1L;
        
