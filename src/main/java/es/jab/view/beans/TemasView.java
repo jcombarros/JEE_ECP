@@ -11,7 +11,7 @@ import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 import es.jab.persistence.model.utils.NivelEstudios;
 
-public class TemaView implements Serializable{
+public class TemasView implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,18 +26,18 @@ public class TemaView implements Serializable{
 	
 	private List<NivelEstudios> nivelesEstudios; 
 	
-	public TemaView(){
+	public TemasView(){
 		
 		
 	}
 	
-	public TemaView(Tema tema){
+	public TemasView(Tema tema){
 		this.temas = null;
 		this.tema = tema;
 		this.valoracion = null;
 	}
 	
-	public TemaView(List<Tema> temas, Tema tema, Valoracion valoracion){
+	public TemasView(List<Tema> temas, Tema tema, Valoracion valoracion){
 		this.temas = temas;
 		this.tema = tema;
 		this.valoracion = valoracion;
@@ -84,7 +84,7 @@ public class TemaView implements Serializable{
 	}
 
 	public void update(){
-		LogManager.getLogger(TemaView.class).debug(
+		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para recuperar la lista de temas");
         //INICIO Mock
 		List<Tema> temasMock = new ArrayList<Tema>();
@@ -99,7 +99,7 @@ public class TemaView implements Serializable{
 	}
 	
 	public Tema recuperarTemaPorId(int id){
-		LogManager.getLogger(TemaView.class).debug(
+		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para recuperar Tema por id");
 		//INICIO Mock
 		Tema temaMock = new Tema("pregunta x", "¿Por qué?");
@@ -109,7 +109,7 @@ public class TemaView implements Serializable{
 	}
 
 	public String process() {
-		LogManager.getLogger(TemaView.class).debug(
+		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para guardar la nueva Valoracion");
 		//INICIO Mock
 		Valoracion valoracion = this.valoracion;

@@ -34,22 +34,22 @@ public class Dispatcher extends HttpServlet {
 
         switch (action) {
 	        case "temas":
-	        	TemaView temaView = new TemaView();
+	        	TemasView temasView = new TemasView();
 	        	
 	        	String temaString = request.getParameter("temaId");
 	        	if (temaString != null && !temaString.isEmpty()){
 	        		try{
 			        	Integer temaId = Integer.valueOf(request.getParameter("temaId"));
-		        		Tema tema = temaView.recuperarTemaPorId(temaId);
+		        		Tema tema = temasView.recuperarTemaPorId(temaId);
 		        		if(tema != null){
-		        			temaView.setTema(tema);
+		        			temasView.setTema(tema);
 		        		}
 	        		}
 	        		catch(NumberFormatException e){
-	        			temaView.setMensaje("Seleccione un tema válido");
+	        			temasView.setMensaje("Seleccione un tema válido");
 	        		}
 	        	}
-	        	request.setAttribute(action, temaView);
+	        	request.setAttribute(action, temasView);
 	            view = action;
 	            break;
 	        default:
@@ -66,7 +66,7 @@ public class Dispatcher extends HttpServlet {
         
         switch (action) { 
 	        case "temas":
-	        	TemaView temaView = new TemaView();
+	        	TemasView temasView = new TemasView();
 	        	
 	        	String temaString = request.getParameter("temaId");
 	        	if (temaString != null && !temaString.isEmpty()){
@@ -74,23 +74,23 @@ public class Dispatcher extends HttpServlet {
 	        		try{
 			        	temaId = Integer.valueOf(temaString);
 			        	Valoracion valoracion = new Valoracion();
-			        	valoracion.setTema(temaView.recuperarTemaPorId(temaId.intValue()));
+			        	valoracion.setTema(temasView.recuperarTemaPorId(temaId.intValue()));
 			        	valoracion.setRespuesta(Integer.valueOf(request.getParameter("respuesta")));
 			        	valoracion.setNivelEstudios(NivelEstudios.valueOf(request.getParameter("nivelEstudios")));
 			        	
-			        	temaView.setValoracion(valoracion);		        	
-			            request.setAttribute(action, temaView);
-			            view = temaView.process();
+			        	temasView.setValoracion(valoracion);		        	
+			            request.setAttribute(action, temasView);
+			            view = temasView.process();
 	        		}
 	        		catch(NumberFormatException e){
-	        			temaView.setMensaje("Seleccione un tema válido");
-			        	request.setAttribute(action, temaView);
+	        			temasView.setMensaje("Seleccione un tema válido");
+			        	request.setAttribute(action, temasView);
 			            view = action;
 	        		}
 	        	}
 	        	else{
-        			temaView.setMensaje("Debe seleccionar un tema");
-	        		request.setAttribute(action, temaView);
+        			temasView.setMensaje("Debe seleccionar un tema");
+	        		request.setAttribute(action, temasView);
 		            view = action;
 	        	}
 	        	
