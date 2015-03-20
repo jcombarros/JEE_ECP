@@ -57,6 +57,17 @@ public class Dispatcher extends HttpServlet {
 	        	request.setAttribute(action, nuevoTemaView);
 	        	view = action;
 	            break;
+	        case "borraTema":
+	        	BorraTemaView borraTemaView = new BorraTemaView();
+	        	String identificador = request.getParameter("identificador");
+	        	if (identificador != null && !identificador.isEmpty()){
+	        		if(borraTemaView.isAutorizado()){
+	        			borraTemaView.setAutorizado(true);
+	        		}
+	        	}
+	        	request.setAttribute(action, borraTemaView);
+	        	view = action;
+	            break;
 	        default:
 	            view = "home";
         }
