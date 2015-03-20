@@ -2,7 +2,10 @@ package es.jab.view.beans;
 
 import java.io.Serializable;
 
+import org.apache.logging.log4j.LogManager;
+
 import es.jab.persistence.model.entities.Tema;
+import es.jab.persistence.model.entities.Valoracion;
 
 public class NuevoTemaView implements Serializable{
 	
@@ -37,6 +40,21 @@ public class NuevoTemaView implements Serializable{
 	}
 
 	public void update(){
+	}
+
+	public String process() {
+		if(this.tema.getNombre() != "" && this.tema.getPregunta() != ""){
+			LogManager.getLogger(NuevoTemaView.class).debug(
+	                "Se accede a la capa de negocio para guardar el nuevo Tema");
+			//INICIO Mock
+			Tema temaGuardado = this.tema;
+			//FIN    Mock
+			return "home";
+		}
+		else{
+			this.mensaje = "Debe rellenar todos los campos";
+			return "nuevoTema";
+		}
 	}
 	
 }

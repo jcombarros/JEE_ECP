@@ -16,7 +16,9 @@
     <c:set var="temasView" scope="request" value="${temas}" />
     <c:set var="mensaje" scope="request" value="${temasView.mensaje}" />
     <c:if test="${mensaje != ''}"> 
-        <span class="mensaje">${mensaje}</span>
+        <p>
+            <span class="mensaje">${mensaje}</span>
+        </p>
     </c:if>
     <div>${temasView.update()}</div>
     <form action="/JEE_ECP/Valoraciones/temas" method="post">

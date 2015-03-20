@@ -54,6 +54,7 @@ public class Dispatcher extends HttpServlet {
 	            break;
 	        case "nuevoTema":
 	        	NuevoTemaView nuevoTemaView = new NuevoTemaView();
+	        	nuevoTemaView.setTema(new Tema());
 	        	request.setAttribute(action, nuevoTemaView);
 	        	view = action;
 	            break;
@@ -99,6 +100,17 @@ public class Dispatcher extends HttpServlet {
 		            view = action;
 	        	}
 	        	
+	            break;
+	        case "nuevoTema":
+	        	NuevoTemaView nuevoTemaView = new NuevoTemaView();
+	        	String nombre = request.getParameter("nombre");
+    			String pregunta = request.getParameter("pregunta");
+    			Tema tema = new Tema();
+    			tema.setNombre(nombre);
+    			tema.setPregunta(pregunta); 
+    			nuevoTemaView.setTema(tema);
+    			view = nuevoTemaView.process();
+	        	request.setAttribute(action, nuevoTemaView);
 	            break;
 	        default:
 	            view = "home";

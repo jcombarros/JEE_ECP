@@ -111,7 +111,7 @@ public class TemasView implements Serializable{
 		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para guardar la nueva Valoracion");
 		//INICIO Mock
-		Valoracion valoracion = this.valoracion;
+		Valoracion valoracionGuardada = this.valoracion;
 		//FIN    Mock
 		return "home";
 	}

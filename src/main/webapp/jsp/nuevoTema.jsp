@@ -18,17 +18,19 @@
     <c:set var="nuevoTemaView" scope="request" value="${nuevoTema}" />
     <c:set var="mensaje" scope="request" value="${nuevoTemaView.mensaje}" />
     <c:if test="${mensaje != ''}"> 
-        <span class="mensaje">${mensaje}</span>
+        <p>
+            <span class="mensaje">${mensaje}</span>
+        </p>
     </c:if>
     <div>${nuevoTemaView.update()}</div>
     <form action="/JEE_ECP/Valoraciones/nuevoTema" method="post">
         <div>
             <label class="campoForm" for="nombre">Nombre:</label>
-            <input type="text" name="nombre">
+            <input type="text" name="nombre" value="${nuevoTemaView.tema.nombre}">
         </div>
         <div>
             <label class="campoForm" for="pregunta">Pregunta:</label>
-            <textarea rows="2" cols="50" name="pregunta" style="resize: none"></textarea>
+            <textarea rows="2" cols="50" name="pregunta" style="resize: none">${nuevoTemaView.tema.pregunta}</textarea>
         </div>
         <p>
             <input type="submit" value="Crear" />
