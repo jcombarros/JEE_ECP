@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Home page</title>
 </head>
 <body>
     <h1>Temas</h1>
-    <p>
-        <a href="/JEE_ECP/Valoraciones/temas">Lista de temas</a>
-    </p>
+    <ul>
+        <li><a href="/JEE_ECP/Valoraciones/temas">Lista de temas</a></li>
+        <li><a href="/JEE_ECP/Valoraciones/nuevoTema">Nuevo tema</a></li>
+    </ul>
 </body>
 </html>
