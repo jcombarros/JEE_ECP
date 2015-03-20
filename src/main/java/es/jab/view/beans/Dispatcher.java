@@ -30,7 +30,6 @@ public class Dispatcher extends HttpServlet {
 		String action = request.getPathInfo().substring(1);
 
         String view;
-        
 
         switch (action) {
 	        case "temas":
