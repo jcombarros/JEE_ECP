@@ -36,4 +36,7 @@ public class NuevoTemaView implements Serializable{
 		this.tema = tema;
 	}
 
+	public void update(){
+	}
+	
 }
