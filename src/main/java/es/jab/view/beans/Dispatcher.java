@@ -64,7 +64,7 @@ public class Dispatcher extends HttpServlet {
 
         String view;
         
-        switch (action) {
+        switch (action) { 
 	        case "temas":
 	        	TemaView temaView = new TemaView();
 	        	
