@@ -6,19 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<style>
-.campoForm{
-    position: relative;
-    width: 150px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 30px;
-    display: inline-block;
-}
-.mensaje{
-    color: red;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/estilo.css" />">
 <title>Temas</title>
 </head>
 <body>
