@@ -15,7 +15,6 @@ public class TemasView implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	private String mensaje;
 
 	private List<Tema> temas;
