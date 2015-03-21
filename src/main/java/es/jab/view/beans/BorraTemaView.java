@@ -95,9 +95,34 @@ public class BorraTemaView implements Serializable{
 		return IDENTIFICADOR_VALIDO.equals(this.identificador);
 	}
 	
+	public Tema recuperarTemaPorId(int id){
+		LogManager.getLogger(BorraTemaView.class).debug(
+                "Se accede a la capa de negocio para recuperar Tema por id");
+		//INICIO Mock
+		Tema temaMock = new Tema("pregunta x", "¿Por qué?");
+		//FIN    Mock
+		return temaMock;
+				
+	}
+	
 	public String process(){
-		//TODO
-		return null;
+		if (isAutorizado()){
+			if(this.tema != null){
+				LogManager.getLogger(BorraTemaView.class).debug(
+		                "Se accede a la capa de negocio para eliminar el Tema");
+				//INICIO Mock
+				this.tema = null;
+				//FIN    Mock
+				return "home";
+			}
+			else{
+				return "borraTema";
+			}
+		}
+		else{
+			this.mensaje = "Introduzca un Identificador de Autorización correcto";
+			return "borraTema";
+		}
 	}
 
 }

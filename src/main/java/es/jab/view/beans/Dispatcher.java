@@ -59,12 +59,6 @@ public class Dispatcher extends HttpServlet {
 	            break;
 	        case "borraTema":
 	        	BorraTemaView borraTemaView = new BorraTemaView();
-	        	String identificador = request.getParameter("identificador");
-	        	if (identificador != null && !identificador.isEmpty()){
-	        		if(borraTemaView.isAutorizado()){
-	        			borraTemaView.setAutorizado(true);
-	        		}
-	        	}
 	        	request.setAttribute(action, borraTemaView);
 	        	view = action;
 	            break;
@@ -122,6 +116,34 @@ public class Dispatcher extends HttpServlet {
     			view = nuevoTemaView.process();
 	        	request.setAttribute(action, nuevoTemaView);
 	            break;
+	        case "borraTema":
+	        	BorraTemaView borraTemaView = new BorraTemaView();
+	        	
+	        	String identificador = request.getParameter("identificador");
+	        	if (identificador != null && !identificador.isEmpty()){
+	        		borraTemaView.setIdentificador(identificador);
+	        		if(borraTemaView.isAutorizado()){
+	        			borraTemaView.setAutorizado(true);
+	        		}
+	        	}
+	        	
+	        	String temaString2 = request.getParameter("tema");
+	        	if (temaString2 != null && !temaString2.isEmpty()){
+	        		Integer temaId2 = new Integer(-1);
+	        		try{
+	        			temaId2 = Integer.valueOf(temaString2);
+		        		Tema tema2 = borraTemaView.recuperarTemaPorId(temaId2);
+		        		if(tema2 != null){
+		        			borraTemaView.setTema(tema2);
+		        		}
+	        		}
+	        		catch(NumberFormatException e){
+	        			borraTemaView.setMensaje("Seleccione un tema válido");
+	        		}
+	        	}
+	        	request.setAttribute(action, borraTemaView);
+	        	view = borraTemaView.process();
+	        	break;
 	        default:
 	            view = "home";
         }
