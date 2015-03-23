@@ -62,6 +62,11 @@ public class Dispatcher extends HttpServlet {
 	        	request.setAttribute(action, borraTemaView);
 	        	view = action;
 	            break;
+	        case "valoraciones":
+	        	ValoracionesView valoracionesView = new ValoracionesView();
+	        	request.setAttribute(action, valoracionesView);
+	        	view = action;
+	            break;
 	        default:
 	            view = "home";
         }

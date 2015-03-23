@@ -12,6 +12,7 @@
         <li><a href="/JEE_ECP/Valoraciones/temas">Lista de temas</a></li>
         <li><a href="/JEE_ECP/Valoraciones/nuevoTema">Nuevo tema</a></li>
         <li><a href="/JEE_ECP/Valoraciones/borraTema">Borrar tema</a></li>
+        <li><a href="/JEE_ECP/Valoraciones/valoraciones">Ver valoraciones</a></li>
     </ul>
 </body>
 </html>
