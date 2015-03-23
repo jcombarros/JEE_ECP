@@ -11,7 +11,7 @@ import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 import es.jab.persistence.model.utils.NivelEstudios;
 
-public class TemasView implements Serializable{
+public class TemasView extends ViewBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

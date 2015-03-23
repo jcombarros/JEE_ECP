@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.utils.NivelEstudios;
 
-public class BorraTemaView implements Serializable{
+public class BorraTemaView extends ViewBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

@@ -1,7 +1,7 @@
 package es.jab.controller.ejb;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import es.jab.controller.BorraTemaController;
 import es.jab.controller.ControllerFactory;
@@ -9,8 +9,8 @@ import es.jab.controller.NuevoTemaController;
 import es.jab.controller.VerTemasController;
 import es.jab.controller.VerVotacionesController;
 
-@ManagedBean(name = "controllerFactory")
-@SessionScoped
+@ManagedBean(name = "controllerEjbFactory")
+@ApplicationScoped
 public class ControllerEjbFactory extends ControllerFactory {
 	
 	private VerTemasController verTemasController;

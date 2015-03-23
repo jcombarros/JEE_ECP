@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import es.jab.persistence.model.entities.dto.TemaDTO;
 import es.jab.persistence.model.utils.NivelEstudios;
 
-public class ValoracionesView implements Serializable{
+public class ValoracionesView extends ViewBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
