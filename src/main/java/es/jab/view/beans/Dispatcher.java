@@ -141,6 +141,7 @@ public class Dispatcher extends HttpServlet {
 	        			borraTemaView.setMensaje("Seleccione un tema válido");
 	        		}
 	        	}
+	        	
 	        	request.setAttribute(action, borraTemaView);
 	        	view = borraTemaView.process();
 	        	break;
