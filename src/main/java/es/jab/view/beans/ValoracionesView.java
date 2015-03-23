@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+
 import es.jab.persistence.model.entities.dto.TemaDTO;
 import es.jab.persistence.model.utils.NivelEstudios;
 
@@ -47,6 +49,8 @@ public class ValoracionesView implements Serializable{
 	}
 
 	public void update(){
+		LogManager.getLogger(ValoracionesView.class).debug(
+                "Se accede a la capa de negocio para recuperar la lista de temas");
 		//INICIO Mock
 		List<TemaDTO> temasDTOMock = new ArrayList<TemaDTO>();
 		List<Double> mediaPorNivel = new ArrayList<Double>();
