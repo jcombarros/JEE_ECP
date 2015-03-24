@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import es.jab.controller.ControllerFactory;
+import es.jab.controller.ejb.ControllerEjbFactory;
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 import es.jab.persistence.model.utils.NivelEstudios;
@@ -21,9 +23,16 @@ public class Dispatcher extends HttpServlet {
 	private static String PATH_ROOT_VIEW = "/jsp/";
 	
 	private static final long serialVersionUID = 1L;
+	
+	private ControllerFactory controllerFactory;
        
     public Dispatcher() {
         super();
+    }
+    
+    @Override
+    public void init(){
+    	controllerFactory = new ControllerEjbFactory();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +43,7 @@ public class Dispatcher extends HttpServlet {
         switch (action) {
 	        case "temas":
 	        	TemasView temasView = new TemasView();
+	        	temasView.setControllerFactory(this.controllerFactory);
 	        	
 	        	String temaString = request.getParameter("temaId");
 	        	if (temaString != null && !temaString.isEmpty()){
@@ -53,17 +63,23 @@ public class Dispatcher extends HttpServlet {
 	            break;
 	        case "nuevoTema":
 	        	NuevoTemaView nuevoTemaView = new NuevoTemaView();
+	        	nuevoTemaView.setControllerFactory(this.controllerFactory);
+	        	
 	        	nuevoTemaView.setTema(new Tema());
 	        	request.setAttribute(action, nuevoTemaView);
 	        	view = action;
 	            break;
 	        case "borraTema":
 	        	BorraTemaView borraTemaView = new BorraTemaView();
+	        	borraTemaView.setControllerFactory(this.controllerFactory);
+
 	        	request.setAttribute(action, borraTemaView);
 	        	view = action;
 	            break;
 	        case "valoraciones":
 	        	ValoracionesView valoracionesView = new ValoracionesView();
+	        	valoracionesView.setControllerFactory(this.controllerFactory);
+
 	        	request.setAttribute(action, valoracionesView);
 	        	view = action;
 	            break;
@@ -82,6 +98,7 @@ public class Dispatcher extends HttpServlet {
         switch (action) { 
 	        case "temas":
 	        	TemasView temasView = new TemasView();
+	        	temasView.setControllerFactory(this.controllerFactory);
 	        	
 	        	String temaString = request.getParameter("temaId");
 	        	if (temaString != null && !temaString.isEmpty()){
@@ -112,6 +129,8 @@ public class Dispatcher extends HttpServlet {
 	            break;
 	        case "nuevoTema":
 	        	NuevoTemaView nuevoTemaView = new NuevoTemaView();
+	        	nuevoTemaView.setControllerFactory(this.controllerFactory);
+	        	
 	        	String nombre = request.getParameter("nombre");
     			String pregunta = request.getParameter("pregunta");
     			Tema tema = new Tema();
@@ -123,6 +142,7 @@ public class Dispatcher extends HttpServlet {
 	            break;
 	        case "borraTema":
 	        	BorraTemaView borraTemaView = new BorraTemaView();
+	        	borraTemaView.setControllerFactory(this.controllerFactory);
 	        	
 	        	String identificador = request.getParameter("identificador");
 	        	if (identificador != null && !identificador.isEmpty()){
