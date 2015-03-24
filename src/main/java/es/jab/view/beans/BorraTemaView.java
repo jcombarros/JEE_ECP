@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
+import es.jab.controller.BorraTemaController;
+import es.jab.controller.VerTemasController;
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.utils.NivelEstudios;
 
@@ -75,15 +77,8 @@ public class BorraTemaView extends ViewBean implements Serializable{
 		if(autorizado){
 			LogManager.getLogger(TemasView.class).debug(
 	                "Se accede a la capa de negocio para recuperar la lista de temas");
-	        //INICIO Mock
-			List<Tema> temasMock = new ArrayList<Tema>();
-			temasMock.add(new Tema("pregunta 1", "¿Qué?"));
-			temasMock.add(new Tema("pregunta 2", "¿Cómo?"));
-			temasMock.add(new Tema("pregunta 3", "¿Quién?"));
-			temasMock.add(new Tema("pregunta 4", "¿Cuando?"));
-			temasMock.add(new Tema("pregunta 5", "¿Dónde?"));
-			//FIN    Mock
-			this.temas = temasMock;
+			BorraTemaController borraTemaController = this.getControllerFactory().getBorraTemaController();
+			this.temas = borraTemaController.recuperarTemas();
 		}
 		else{
 			this.mensaje = "Introduzca un Identificador de Autorización para borrar";
@@ -98,10 +93,10 @@ public class BorraTemaView extends ViewBean implements Serializable{
 	public Tema recuperarTemaPorId(int id){
 		LogManager.getLogger(BorraTemaView.class).debug(
                 "Se accede a la capa de negocio para recuperar Tema por id");
-		//INICIO Mock
-		Tema temaMock = new Tema("pregunta x", "¿Por qué?");
-		//FIN    Mock
-		return temaMock;
+		
+		BorraTemaController borraTemaController = this.getControllerFactory().getBorraTemaController();
+		
+		return borraTemaController.recuperarTemaPorId(id);
 				
 	}
 	
@@ -110,9 +105,10 @@ public class BorraTemaView extends ViewBean implements Serializable{
 			if(this.tema != null){
 				LogManager.getLogger(BorraTemaView.class).debug(
 		                "Se accede a la capa de negocio para eliminar el Tema");
-				//INICIO Mock
-				this.tema = null;
-				//FIN    Mock
+				
+				BorraTemaController borraTemaController = this.getControllerFactory().getBorraTemaController();
+				borraTemaController.borrarTema(this.tema.getId());
+				
 				return "home";
 			}
 			else{

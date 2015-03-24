@@ -16,7 +16,7 @@ public class Valoracion {
 	@ GeneratedValue
 	private int id;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn
 	private Tema tema;
 	
