@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
+import es.jab.controller.NuevoTemaController;
+import es.jab.controller.VerTemasController;
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 import es.jab.persistence.model.utils.NivelEstudios;
@@ -85,34 +87,29 @@ public class TemasView extends ViewBean implements Serializable{
 	public void update(){
 		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para recuperar la lista de temas");
-        //INICIO Mock
-		List<Tema> temasMock = new ArrayList<Tema>();
-		temasMock.add(new Tema("pregunta 1", "¿Qué?"));
-		temasMock.add(new Tema("pregunta 2", "¿Cómo?"));
-		temasMock.add(new Tema("pregunta 3", "¿Quién?"));
-		temasMock.add(new Tema("pregunta 4", "¿Cuando?"));
-		temasMock.add(new Tema("pregunta 5", "¿Dónde?"));
-		//FIN    Mock
+
+		VerTemasController verTemasController = this.getControllerFactory().getVerTemasController();
+		this.temas = verTemasController.recuperarTemas();
+		
 		this.nivelesEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
-		this.temas = temasMock;
 	}
 	
 	public Tema recuperarTemaPorId(int id){
 		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para recuperar Tema por id");
-		//INICIO Mock
-		Tema temaMock = new Tema("pregunta x", "¿Por qué?");
-		//FIN    Mock
-		return temaMock;
+		
+		VerTemasController verTemasController = this.getControllerFactory().getVerTemasController();
+		
+		return verTemasController.recuperarTemaPorId(id);
 				
 	}
 
 	public String process() {
 		LogManager.getLogger(TemasView.class).debug(
                 "Se accede a la capa de negocio para guardar la nueva Valoracion");
-		//INICIO Mock
-		Valoracion valoracionGuardada = this.valoracion;
-		//FIN    Mock
+		
+		VerTemasController verTemasController = this.getControllerFactory().getVerTemasController();
+		verTemasController.guardaValoracion(this.valoracion);
 		return "home";
 	}
 
