@@ -19,8 +19,7 @@ public class ValoracionDaoJpa extends GenericDaoJpa<Valoracion, Integer> impleme
 	public ValoracionDaoJpa() {
         super(Valoracion.class);
     }
-	
-	
+
 	public void deleteByTema(int id) {
         EntityManager entityManager = DaoFactoryJpa.getEntityManagerFactory().createEntityManager();
         Tema entity = entityManager.find(Tema.class, id);
@@ -49,5 +48,22 @@ public class ValoracionDaoJpa extends GenericDaoJpa<Valoracion, Integer> impleme
             }
         }
     }
+	
+	public List<Valoracion> getByTema(int id){
+		EntityManager entityManager = DaoFactoryJpa.getEntityManagerFactory().createEntityManager();
+        Tema entity = entityManager.find(Tema.class, id);
+        List<Valoracion> valocionesTema = null;
+        if (entity != null) {
+	        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+	        CriteriaQuery<Valoracion> query = builder.createQuery(Valoracion.class);
+			Root<Valoracion> root = query.from(Valoracion.class);
+			query.select(root);
+			query.where(builder.equal(root.get("tema"), entity));
+			TypedQuery<Valoracion> typedQuery = entityManager.createQuery(query);
+			valocionesTema = typedQuery.getResultList();
+			entityManager.close();
+        }
+        return valocionesTema;
+	}
 
 }

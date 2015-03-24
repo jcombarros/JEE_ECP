@@ -27,7 +27,7 @@ public class VerTemasControllerEjb implements VerTemasController {
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
 		Valoracion valoracionBD = DaoFactory.getInstance().getValoracionDao().read(valoracion.getId());
 		if(valoracionBD == null){
-			DaoFactory.getInstance().getValoracionDao().create(valoracionBD);
+			DaoFactory.getInstance().getValoracionDao().create(valoracion);
 		}
 	}
 

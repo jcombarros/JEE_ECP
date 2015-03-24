@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
+import es.jab.controller.VerTemasController;
+import es.jab.controller.VerVotacionesController;
 import es.jab.persistence.model.entities.dto.TemaDTO;
 import es.jab.persistence.model.utils.NivelEstudios;
 
@@ -51,24 +53,16 @@ public class ValoracionesView extends ViewBean implements Serializable{
 	public void update(){
 		LogManager.getLogger(ValoracionesView.class).debug(
                 "Se accede a la capa de negocio para recuperar la lista de temas");
-		//INICIO Mock
-		List<TemaDTO> temasDTOMock = new ArrayList<TemaDTO>();
-		List<Double> mediaPorNivel = new ArrayList<Double>();
-		mediaPorNivel.add(new Double (2.5));
-		mediaPorNivel.add(new Double (3.7));
-		mediaPorNivel.add(new Double (6));
-		mediaPorNivel.add(new Double (9));
-		temasDTOMock.add(new TemaDTO("pregunta 1", "¿Qué?", 4, mediaPorNivel));
-		temasDTOMock.add(new TemaDTO("pregunta 2", "¿Cómo?", 7, mediaPorNivel));
-		temasDTOMock.add(new TemaDTO("pregunta 3", "¿Quién?", 3, mediaPorNivel));
-		temasDTOMock.add(new TemaDTO("pregunta 4", "¿Cuando?", 8, mediaPorNivel));
-		temasDTOMock.add(new TemaDTO("pregunta 5", "¿Dónde?", 6, mediaPorNivel));
-		//FIN    Mock
-		if (temasDTOMock.isEmpty()){
+
+		List<TemaDTO> temasDTO = new ArrayList<TemaDTO>();
+
+		VerVotacionesController verVotacionesController = this.getControllerFactory().getVerVotacionesController();
+		temasDTO = verVotacionesController.recuperarVotaciones();
+		if (temasDTO.isEmpty()){
 			this.mensaje = "Aún no se ha añadido ningún tema.";
 		}
 		this.nivelesEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
-		this.temas = temasDTOMock;
+		this.temas = temasDTO;
 	}
 	
 	public String process(){
