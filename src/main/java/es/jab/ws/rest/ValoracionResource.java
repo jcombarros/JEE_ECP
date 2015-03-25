@@ -69,8 +69,8 @@ public class ValoracionResource {
         if (entity != null) {
             throw new InternalServerErrorException();
         } else {
-        	LogManager.getLogger(Valoracion.class).info("DELETE/ valoraciones/(id):" + entity);
-        	return Response.ok(entity).build();
+        	LogManager.getLogger(Valoracion.class).info("DELETE/ valoraciones/(id)");
+        	return Response.ok().build();
         }
 		 
 	 }
@@ -89,14 +89,20 @@ public class ValoracionResource {
     @Path("/{id}" + "/byTema")
 	@Consumes(MediaType.APPLICATION_XML)
 	 public Response deleteByTema(int id){
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        DaoFactory.getInstance().getValoracionDao().deleteByTema(id); 
+        LogManager.getLogger(Valoracion.class).info("DELETE/ valoraciones/(id)/byTema");
+		return Response.ok().build();
 	 }
 	 
 	@GET
 	@Path("byTema")
     @Produces(MediaType.APPLICATION_XML)
 	 public List<Valoracion> getByTema(int id){
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        List<Valoracion> entities = DaoFactory.getInstance().getValoracionDao().getByTema(id);
+    	LogManager.getLogger(Valoracion.class).info("GET/ valoraciones:" + entities);
+        return entities;
 	 }
 
 }

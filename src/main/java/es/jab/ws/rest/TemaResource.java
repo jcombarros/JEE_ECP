@@ -69,8 +69,8 @@ public class TemaResource {
         if (entity != null) {
             throw new InternalServerErrorException();
         } else {
-        	LogManager.getLogger(Tema.class).info("DELETE/ temas/(id):" + entity);
-        	return Response.ok(entity).build();
+        	LogManager.getLogger(Tema.class).info("DELETE/ temas/(id)");
+        	return Response.ok().build();
         }
 		 
 	 }
