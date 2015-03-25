@@ -42,7 +42,7 @@ public class TemaResource {
         if (entity == null) {
             throw new NotFoundException();
         } else {
-        	LogManager.getLogger(Tema.class).info("@GET/ temas/(id):" + entity);
+        	LogManager.getLogger(Tema.class).info("GET/ temas/(id):" + entity);
             return entity;
         }
 		 
@@ -69,7 +69,7 @@ public class TemaResource {
         if (entity != null) {
             throw new InternalServerErrorException();
         } else {
-        	LogManager.getLogger(Tema.class).info("@GET/ temas/(id):" + entity);
+        	LogManager.getLogger(Tema.class).info("DELETE/ temas/(id):" + entity);
         	return Response.ok(entity).build();
         }
 		 
@@ -78,8 +78,10 @@ public class TemaResource {
 	@GET
     @Produces(MediaType.APPLICATION_XML)
 	 public List<Tema> findAll() {
-		 return null;
-		 
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        List<Tema> entities = DaoFactory.getInstance().getTemaDao().findAll();
+    	LogManager.getLogger(Tema.class).info("GET/ temas:" + entities);
+        return entities;
 	 }
 
 }

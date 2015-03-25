@@ -18,7 +18,6 @@ import org.apache.logging.log4j.LogManager;
 
 import es.jab.persistence.model.dao.DaoFactory;
 import es.jab.persistence.model.dao.jpa.DaoFactoryJpa;
-import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 
 @Path("/valoraciones")
@@ -29,7 +28,7 @@ public class ValoracionResource {
 	public Response create(Valoracion entity) {
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
         DaoFactory.getInstance().getValoracionDao().create(entity);
-        LogManager.getLogger(Tema.class).info("POST/ valoraciones:" + entity);
+        LogManager.getLogger(Valoracion.class).info("POST/ valoraciones:" + entity);
 		return Response.ok(entity).build();
 		 
 	 }
@@ -43,7 +42,7 @@ public class ValoracionResource {
         if (entity == null) {
             throw new NotFoundException();
         } else {
-        	LogManager.getLogger(Tema.class).info("@GET/ valoraciones/(id):" + entity);
+        	LogManager.getLogger(Valoracion.class).info("GET/ valoraciones/(id):" + entity);
             return entity;
         }
 		 
@@ -54,7 +53,7 @@ public class ValoracionResource {
 	 public Response update(Valoracion entity) {
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
         DaoFactory.getInstance().getValoracionDao().update(entity);
-        LogManager.getLogger(Tema.class).info("PUT/ valoraciones:" + entity);
+        LogManager.getLogger(Valoracion.class).info("PUT/ valoraciones:" + entity);
 		return Response.ok(entity).build();
 		 
 	 }
@@ -70,7 +69,7 @@ public class ValoracionResource {
         if (entity != null) {
             throw new InternalServerErrorException();
         } else {
-        	LogManager.getLogger(Tema.class).info("@GET/ valoraciones/(id):" + entity);
+        	LogManager.getLogger(Valoracion.class).info("DELETE/ valoraciones/(id):" + entity);
         	return Response.ok(entity).build();
         }
 		 
@@ -79,7 +78,10 @@ public class ValoracionResource {
 	@GET
     @Produces(MediaType.APPLICATION_XML)
 	 public List<Valoracion> findAll() {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        List<Valoracion> entities = DaoFactory.getInstance().getValoracionDao().findAll();
+    	LogManager.getLogger(Valoracion.class).info("GET/ valoraciones:" + entities);
+        return entities;
 		 
 	 }
 	 
