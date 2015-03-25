@@ -12,6 +12,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+
+import es.jab.persistence.model.dao.DaoFactory;
+import es.jab.persistence.model.dao.jpa.DaoFactoryJpa;
+import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 
 @Path("/valoraciones")
@@ -20,7 +25,10 @@ public class ValoracionResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
 	public Response create(Valoracion entity) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        DaoFactory.getInstance().getValoracionDao().create(entity);
+        LogManager.getLogger(Tema.class).info("POST/ valoraciones:" + entity);
+		return Response.ok(entity).build();
 		 
 	 }
 	 
