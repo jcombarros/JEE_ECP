@@ -51,7 +51,10 @@ public class ValoracionResource {
 	@PUT
     @Consumes(MediaType.APPLICATION_XML)
 	 public Response update(Valoracion entity) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        DaoFactory.getInstance().getValoracionDao().update(entity);
+        LogManager.getLogger(Tema.class).info("PUT/ valoraciones:" + entity);
+		return Response.ok(entity).build();
 		 
 	 }
 	 

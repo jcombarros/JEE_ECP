@@ -50,7 +50,10 @@ public class TemaResource {
 	@PUT
     @Consumes(MediaType.APPLICATION_XML)
 	 public Response update(Tema entity) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        DaoFactory.getInstance().getTemaDao().update(entity);
+        LogManager.getLogger(Tema.class).info("PUT/ temas:" + entity);
+		return Response.ok(entity).build();
 		 
 	 }
 	 
