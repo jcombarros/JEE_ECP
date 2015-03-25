@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -61,7 +62,16 @@ public class TemaResource {
     @Path("/{id}")
 	@Consumes(MediaType.APPLICATION_XML)
 	 public Response deleteById(@PathParam("id") int id) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        DaoFactory.getInstance().getTemaDao().deleteById(id);
+        
+        Tema entity = DaoFactory.getInstance().getTemaDao().read(id);
+        if (entity != null) {
+            throw new InternalServerErrorException();
+        } else {
+        	LogManager.getLogger(Tema.class).info("@GET/ temas/(id):" + entity);
+        	return Response.ok(entity).build();
+        }
 		 
 	 }
 	 
