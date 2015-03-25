@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -36,7 +37,14 @@ public class ValoracionResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_XML)
 	 public Valoracion read(int id) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+		Valoracion entity = DaoFactory.getInstance().getValoracionDao().read(id);
+        if (entity == null) {
+            throw new NotFoundException();
+        } else {
+        	LogManager.getLogger(Tema.class).info("@GET/ valoraciones/(id):" + entity);
+            return entity;
+        }
 		 
 	 }
 	 

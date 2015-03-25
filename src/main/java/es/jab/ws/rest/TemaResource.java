@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -35,7 +36,14 @@ public class TemaResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_XML)
 	 public Tema read(@PathParam("id") int id) {
-		 return null;
+		DaoFactory.setDaoFactory(new DaoFactoryJpa());
+        Tema entity = DaoFactory.getInstance().getTemaDao().read(id);
+        if (entity == null) {
+            throw new NotFoundException();
+        } else {
+        	LogManager.getLogger(Tema.class).info("@GET/ temas/(id):" + entity);
+            return entity;
+        }
 		 
 	 }
 	 
