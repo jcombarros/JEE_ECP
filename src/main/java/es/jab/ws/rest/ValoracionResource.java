@@ -10,6 +10,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,7 +37,7 @@ public class ValoracionResource {
 	@GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_XML)
-	 public Valoracion read(int id) {
+	 public Valoracion read(@PathParam("id") int id) {
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
 		Valoracion entity = DaoFactory.getInstance().getValoracionDao().read(id);
         if (entity == null) {
@@ -61,7 +62,7 @@ public class ValoracionResource {
 	@DELETE
     @Path("/{id}")
 	@Consumes(MediaType.APPLICATION_XML)
-	 public Response deleteById(int id) {
+	 public Response deleteById(@PathParam("id") int id) {
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
         DaoFactory.getInstance().getValoracionDao().deleteById(id);
         
@@ -88,7 +89,7 @@ public class ValoracionResource {
 	@DELETE
     @Path("/{id}" + "/byTema")
 	@Consumes(MediaType.APPLICATION_XML)
-	 public Response deleteByTema(int id){
+	 public Response deleteByTema(@PathParam("id") int id){
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
         DaoFactory.getInstance().getValoracionDao().deleteByTema(id); 
         LogManager.getLogger(Valoracion.class).info("DELETE/ valoraciones/(id)/byTema");
@@ -96,9 +97,9 @@ public class ValoracionResource {
 	 }
 	 
 	@GET
-	@Path("byTema")
+	@Path("/byTema" + "/{id}")
     @Produces(MediaType.APPLICATION_XML)
-	 public List<Valoracion> getByTema(int id){
+	 public List<Valoracion> getByTema(@PathParam("id") int id){
 		DaoFactory.setDaoFactory(new DaoFactoryJpa());
         List<Valoracion> entities = DaoFactory.getInstance().getValoracionDao().getByTema(id);
     	LogManager.getLogger(Valoracion.class).info("GET/ valoraciones:" + entities);
