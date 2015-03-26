@@ -3,8 +3,10 @@ package es.jab.persistence.model.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Tema {
 	
 	public static final String TABLE = "tema";

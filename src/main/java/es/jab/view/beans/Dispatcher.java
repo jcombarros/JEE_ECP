@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.jab.controller.ControllerFactory;
 import es.jab.controller.ejb.ControllerEjbFactory;
+import es.jab.controller.ws.ControllerWsFactory;
 import es.jab.persistence.model.entities.Tema;
 import es.jab.persistence.model.entities.Valoracion;
 import es.jab.persistence.model.utils.NivelEstudios;
@@ -32,7 +33,7 @@ public class Dispatcher extends HttpServlet {
     
     @Override
     public void init(){
-    	controllerFactory = new ControllerEjbFactory();
+    	controllerFactory = new ControllerWsFactory();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

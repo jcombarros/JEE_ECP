@@ -7,8 +7,7 @@ public class NuevoTemaControllerWs implements NuevoTemaController {
 
 	@Override
 	public void guardaTema(Tema tema) {
-		// TODO Auto-generated method stub
-
+		ControllerWs.buildWebServiceManager("/temas").create(tema);
 	}
 
 }

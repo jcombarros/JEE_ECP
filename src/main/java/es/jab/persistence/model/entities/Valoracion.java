@@ -1,15 +1,16 @@
 package es.jab.persistence.model.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import es.jab.persistence.model.utils.NivelEstudios;
 
 @Entity
+@XmlRootElement
 public class Valoracion {
 	
 	@Id
