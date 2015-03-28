@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.GenericType;
 
 import es.jab.controller.BorraTemaController;
+import es.jab.persistence.model.dao.DaoFactory;
 import es.jab.persistence.model.entities.Tema;
 
 public class BorraTemaControllerWs implements BorraTemaController {
@@ -22,6 +23,7 @@ public class BorraTemaControllerWs implements BorraTemaController {
 
 	@Override
 	public void borrarTema(int id) {
+		ControllerWs.buildWebServiceManager("/valoraciones", String.valueOf(id), "/byTema").delete();
 		ControllerWs.buildWebServiceManager("/temas", String.valueOf(id)).delete();
 
 	}
